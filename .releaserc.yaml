@@ -41,21 +41,22 @@ plugins:
           author:
             name: semantic-release-bot
           release: false
-  - "@semantic-release/release-notes-generator"
+  - - "@semantic-release/release-notes-generator"
+    - preset: conventionalcommits
   - - "@semantic-release/changelog"
     - changelogFile: CHANGELOG.md
-      changelogTitle: "# Changelog #"
-  - - "@semantic-release/exec"
-    - verifyReleaseCmd: echo "${nextRelease.version}" > ./version
+      changelogTitle: |-
+        # Changelog
+  
+        All notable changes to this project will be documented in this file.
   - - "@semantic-release/git"
     - assets:
-        - CHANGELOG.md
+      - CHANGELOG.md
+      message: |-
+        chore(release): version ${nextRelease.version} [skip ci]
+  
+        ${nextRelease.notes}
   - "@semantic-release/github"
-  - - "semantic-release-slack-bot"
-    - notifyOnSuccess: true
-      notifyOnFail: false
-      packageName: "terraform-aws-codepipeline"
-      markdownReleaseNotes: true
 
 repositoryUrl: https://github.com/Afinsky/terraform-aws-codepipeline
 ci: true
