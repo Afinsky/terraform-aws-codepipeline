@@ -47,14 +47,14 @@ plugins:
     - changelogFile: CHANGELOG.md
       changelogTitle: |-
         # Changelog
-  
+
         All notable changes to this project will be documented in this file.
   - - "@semantic-release/git"
     - assets:
       - CHANGELOG.md
       message: |-
         chore(release): version ${nextRelease.version} [skip ci]
-  
+
         ${nextRelease.notes}
   - "@semantic-release/github"
 
